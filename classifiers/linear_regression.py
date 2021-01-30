@@ -16,6 +16,7 @@ class BayesianLinearRegression:
     beta ~ N(0,Lambda)
     Lambda = I * lambda
     P(y|x,beta) ~ N(y|x.dot(beta),sigma**2)
+    https://wikimedia.org/api/rest_v1/media/math/render/svg/8131876ebb4646bacc6cf315155856e5d7886483
     """
 
     def __init__(self, lamb=20., beta_mu=0, sigma=5, fit_intercept=True):
@@ -40,6 +41,7 @@ class BayesianLinearRegression:
     def fit_ml(self, X, y):
         """
           Fit a Maximum Likelihood estimate. (not Bayesian)
+          y = mx + b
           X: features, n_samples by n_features nd-array
           y: target values, n_samples array
         """
@@ -65,6 +67,7 @@ class BayesianLinearRegression:
             beta_mu = np.repeat(self.beta_mu, f_dim)
         else:
             beta_mu = self.beta_mu
+
         sigma = self.sigma
         # let the actual calculation begin
         l = sigma ** 2 * inv_lamb
